@@ -1,0 +1,42 @@
+---
+- hosts: freebsd
+  vars:
+  - ansible_python_interpreter: /usr/local/bin/python2.7
+  tasks:
+  - name: upgrade pkg
+    raw: pkg upgrade -y
+    become: yes
+  # - name: install python
+  #   raw: pkg install -y python27
+  #   become: yes
+  # - name: install ntp
+  #   pkgng: name=ntp state=present
+  #   become: yes
+  # - name: enable ntpd
+  #   command: sysrc ntpd_enable="YES"
+  #   become: yes
+  # - name: sync ntpd on start
+  #   command: sysrc ntpd_sync_on_start="YES"
+  #   become: yes
+  # - name: start ntpd
+  #   command: service ntpd start
+  #   # service: name=ntpd state=started
+  #   become: yes
+  - name: install vim-lite
+    pkgng: name=vim-lite state=present
+    become: yes
+  - name: install git
+    pkgng: name=git state=present
+    become: yes
+  - name: install tmux
+    pkgng: name=tmux state=present
+    become: yes
+  - name: install python35
+    pkgng: name=python35 state=present
+    become: yes
+  - name: update ports in /usr/ports
+    command: /usr/sbin/portsnap fetch update
+    become: yes
+  # - name: install lang/erlang from ports
+  #   portinstall: name=lang/erlang state=present
+  #   become: yes

@@ -1,0 +1,2 @@
+[freebsd]
+rpi2 ansible_python_interpreter=/usr/local/bin/python2.7
